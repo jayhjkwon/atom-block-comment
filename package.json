@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "Block comment",
   "activationEvents": ["block-comment:toggle"],
-  "repository": "https://github.com/atom/block-comment",
+  "repository": "https://github.com/RayKwon/atom-block-comment",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
