@@ -1,7 +1,7 @@
 {
   "name": "block-comment",
   "main": "./lib/block-comment",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Block comment",
   "activationEvents": [
     "block-comment:toggle"
