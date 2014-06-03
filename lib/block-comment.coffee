@@ -3,8 +3,22 @@ module.exports =
     atom.workspaceView.command "block-comment:toggle", => @toggle()
 
   toggle: ->
-    # This assumes the active pane item is an editor
-    editor = atom.workspace.activePaneItem
-    # editor.insertText('Hello, World!')
-    selection = editor.getSelection()
-    editor.insertText("/*#{selection.getText()}*/")
+    workspace = atom.workspace
+    editor = workspace.getActiveEditor()
+
+    selection = editor.getSelection().getText()
+    start = selection.trim().substr(0,2)
+    end = selection.trim().substr(-2)
+
+    if start is '/*' and end is '*/'
+      replaced = selection.trim().substr(2)
+      replaced = replaced.substr(0, replaced.length - 2)
+      editor.insertText(replaced)
+    else
+      editor.insertText("/*#{selection}*/")
+
+    # cursorPoint = editor.getCursorBufferPosition()
+    # previousText = editor.getTextInBufferRange([[0, 0], [cursorPoint.row, cursorPoint.column]])
+    # console.log "previousText=#{previousText}"
+    # restText = editor.getTextInBufferRange([[cursorPoint.row, cursorPoint.column], [editor.getLastBufferRow(), -1]])
+    # console.log "restText=#{restText}"
