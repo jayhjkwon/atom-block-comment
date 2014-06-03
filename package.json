@@ -1,14 +1,15 @@
 {
   "name": "block-comment",
   "main": "./lib/block-comment",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Block comment",
-  "activationEvents": ["block-comment:toggle"],
+  "activationEvents": [
+    "block-comment:toggle"
+  ],
   "repository": "https://github.com/RayKwon/atom-block-comment",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
