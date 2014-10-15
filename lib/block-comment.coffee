@@ -17,6 +17,13 @@ module.exports =
     else if extension is 'html'
       commentStart = '<!--'
       commentEnd = '-->'
+    else if extension is 'php'
+      commentStart = '/**\n
+      \t * Block comment\n
+      \t *\n
+      \t * @param type\n
+      \t * @return void\n'
+      commentEnd = '\t */\n\t'
     else
       commentStart = '/*'
       commentEnd = '*/'
