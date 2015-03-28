@@ -1,6 +1,6 @@
 module.exports =
   activate: ->
-    atom.workspaceView.command "block-comment:toggle", => @toggle()
+    atom.commands.add 'atom-workspace', 'block-comment:toggle': @toggle
 
   toggle: ->
     workspace = atom.workspace
