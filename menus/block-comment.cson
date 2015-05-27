@@ -1,7 +1,8 @@
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
 'context-menu':
-  '.overlayer':
-      'Enable Block Comment': 'block-comment:toggle'
+  'atom-text-editor': [
+    { 'label': 'Enable Block Comment', 'command': 'block-comment:toggle' }
+  ]
 
 'menu': [
   {

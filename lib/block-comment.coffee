@@ -4,7 +4,7 @@ module.exports =
 
   toggle: ->
     workspace = atom.workspace
-    editor = workspace.getActiveEditor()
+    editor = workspace.getActiveTextEditor()
 
     fileName = editor.getTitle()
     extension = fileName.substr(fileName.lastIndexOf('.') + 1, fileName.length)
@@ -28,7 +28,7 @@ module.exports =
       commentStart = '/*'
       commentEnd = '*/'
 
-    selection = editor.getSelection().getText()
+    selection = editor.getLastSelection().getText()
     start = selection.trim().substr(0, commentStart.length)
     end = selection.trim().substr('-' + commentEnd.length)
 
