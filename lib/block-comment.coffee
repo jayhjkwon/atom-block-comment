@@ -30,7 +30,7 @@ module.exports =
 
     selection = editor.getLastSelection().getText()
     start = selection.trim().substr(0, commentStart.length)
-    end = selection.trim().substr('-' + commentEnd.length)
+    end = selection.trim().substr(-1 * commentEnd.length)
 
     if start is commentStart and end is commentEnd
       replaced = selection.trim().substr(commentStart.length)
