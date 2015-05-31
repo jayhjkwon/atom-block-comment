@@ -4,7 +4,7 @@ module.exports =
 
   toggle: ->
     workspace = atom.workspace
-    editor = workspace.getActiveEditor()
+    editor = workspace.getActiveTextEditor()
 
     fileName = editor.getTitle()
     extension = fileName.substr(fileName.lastIndexOf('.') + 1, fileName.length)
@@ -28,16 +28,17 @@ module.exports =
       commentStart = '/*'
       commentEnd = '*/'
 
-    selection = editor.getSelection().getText()
-    start = selection.trim().substr(0, commentStart.length)
-    end = selection.trim().substr('-' + commentEnd.length)
+    selection = editor.getLastSelection()
+    selectionText = selection.getText()
+    start = selectionText.trim().substr(0, commentStart.length)
+    end = selectionText.trim().substr(-1 * commentEnd.length)
 
     if start is commentStart and end is commentEnd
-      replaced = selection.trim().substr(commentStart.length)
+      replaced = selectionText.trim().substr(commentStart.length)
       replaced = replaced.substr(0, replaced.length - commentEnd.length)
-      editor.insertText(replaced)
+      selection.insertText(replaced, {select: true})
     else
-      editor.insertText("#{commentStart+selection+commentEnd}")
+      selection.insertText("#{commentStart+selectionText+commentEnd}", {select: true})
 
 
 

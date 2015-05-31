@@ -3,9 +3,11 @@
   "main": "./lib/block-comment",
   "version": "0.4.1",
   "description": "Block comment",
-  "activationEvents": [
-    "block-comment:toggle"
-  ],
+  "activationCommands": {
+    "atom-text-editor": [
+      "block-comment:toggle"
+    ]
+  },
   "repository": "https://github.com/RayKwon/atom-block-comment",
   "license": "MIT",
   "engines": {
