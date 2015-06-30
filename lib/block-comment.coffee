@@ -24,12 +24,21 @@ module.exports =
       \t * @param type\n
       \t * @return void\n'
       commentEnd = '\t */\n\t'
+    else if extension is 'sh'
+      commentStart = ''
+      commentEnd = ''
     else
       commentStart = '/*'
       commentEnd = '*/'
 
     selection = editor.getLastSelection()
     selectionText = selection.getText()
+    
+    if extension is 'sh'
+      # add '# ' to the beginning of each line
+      selectionText = selectionText.replace /^/, "# "
+      selectionText = selectionText.replace /\n/g, "\n# "
+    
     start = selectionText.trim().substr(0, commentStart.length)
     end = selectionText.trim().substr(-1 * commentEnd.length)
 
