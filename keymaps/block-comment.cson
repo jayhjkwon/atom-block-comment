@@ -9,4 +9,5 @@
 # https://atom.io/docs/latest/advanced/keymaps
 'atom-text-editor':
   'ctrl-alt-cmd-/': 'block-comment:toggle'
-  'ctrl-?': 'block-comment:toggle'
+  # add keybinding for windows users
+  'ctrl-shift-/': 'block-comment:toggle'
