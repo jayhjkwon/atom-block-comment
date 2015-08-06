@@ -15,8 +15,8 @@ module.exports =
       commentStart = '###'
       commentEnd = '###'
     else if extension is 'html' or extension is 'md'
-      commentStart = '<!--'
-      commentEnd = '-->'
+      commentStart = '<!--\n'
+      commentEnd = '\n-->'
     else if extension is 'php'
       commentStart = '/**\n
       \t * Block comment\n
@@ -35,7 +35,7 @@ module.exports =
     selectionText = selection.getText()
     
     if extension is 'sh'
-      # add '# ' to the beginning of each line
+      # add '# ' at the beginning of each line
       selectionText = selectionText.replace /^/, "# "
       selectionText = selectionText.replace /\n/g, "\n# "
     
