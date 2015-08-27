@@ -11,6 +11,9 @@ module.exports =
     if extension is 'js'
       commentStart = '/*'
       commentEnd = '*/'
+    else if extension is 'sh' or extension is 'yaml'
+      commentStart = ''
+      commentEnd = ''
     else if extension is 'coffee'
       commentStart = '###'
       commentEnd = '###'
@@ -24,21 +27,18 @@ module.exports =
       \t * @param type\n
       \t * @return void\n'
       commentEnd = '\t */\n\t'
-    else if extension is 'sh'
-      commentStart = ''
-      commentEnd = ''
     else
       commentStart = '/*'
       commentEnd = '*/'
 
     selection = editor.getLastSelection()
     selectionText = selection.getText()
-    
-    if extension is 'sh'
-      # add '# ' at the beginning of each line
+
+    if extension is 'sh' or extension is 'yaml'
+      # add '# ' to the beginning of each line
       selectionText = selectionText.replace /^/, "# "
       selectionText = selectionText.replace /\n/g, "\n# "
-    
+
     start = selectionText.trim().substr(0, commentStart.length)
     end = selectionText.trim().substr(-1 * commentEnd.length)
 
