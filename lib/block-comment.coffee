@@ -24,25 +24,35 @@ module.exports =
       \t * @param type\n
       \t * @return void\n'
       commentEnd = '\t */\n\t'
+    else if extension is 'sml'
+      commentStart = '(*'
+      commentEnd = '*)'
+    else if extension is 's'
+      commentStart = '#'
+      commentEnd = '#'
     else
       commentStart = '/*'
       commentEnd = '*/'
 
     selection = editor.getLastSelection()
     selectionText = selection.getText()
+    
+    if selectionText.length is 0
+        selection.cursor.moveToBeginningOfLine()
+        selection.selectToEndOfLine()
+        selectionText = selection.getText()
+
+
     start = selectionText.trim().substr(0, commentStart.length)
     end = selectionText.trim().substr(-1 * commentEnd.length)
 
     if start is commentStart and end is commentEnd
-      replaced = selectionText.trim().substr(commentStart.length)
-      replaced = replaced.substr(0, replaced.length - commentEnd.length)
-      selection.insertText(replaced, {select: true})
+       replaced = selectionText.trim().substr(commentStart.length)
+       replaced = replaced.substr(0, replaced.length - commentEnd.length)
+       selection.insertText(replaced, {select: false})
+       selection.cursor.moveToEndOfLine()
     else
-      selection.insertText("#{commentStart+selectionText+commentEnd}", {select: true})
-
-
-
-
+      selection.insertText("#{commentStart+selectionText+commentEnd}", {select: false})
 
     # cursorPoint = editor.getCursorBufferPosition()
     # previousText = editor.getTextInBufferRange([[0, 0], [cursorPoint.row, cursorPoint.column]])
