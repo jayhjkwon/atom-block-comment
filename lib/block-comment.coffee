@@ -24,6 +24,9 @@ module.exports =
       \t * @param type\n
       \t * @return void\n'
       commentEnd = '\t */\n\t'
+    else if extension is 'm'
+      commentStart = '%{'
+      commentEnd = '%}'
     else
       commentStart = '/*'
       commentEnd = '*/'
