@@ -8,15 +8,22 @@ module.exports =
 
     fileName = editor.getTitle()
     extension = fileName.substr(fileName.lastIndexOf('.') + 1, fileName.length)
+    if extension == fileName
+      extension = ''
+
+    # comment types
     if extension is 'js'
-      commentStart = '/*'
-      commentEnd = '*/'
+      commentStart = '/*\n'
+      commentEnd = '\n*/'
+    else if extension is 'sh' or extension is 'yaml' or extension is 'py' extension is ''
+      commentStart = ''
+      commentEnd = ''
     else if extension is 'coffee'
-      commentStart = '###'
-      commentEnd = '###'
-    else if extension is 'html'
-      commentStart = '<!--'
-      commentEnd = '-->'
+      commentStart = '###\n'
+      commentEnd = '\n###'
+    else if extension is 'html' or extension is 'md'
+      commentStart = '<!--\n'
+      commentEnd = '\n-->'
     else if extension is 'php'
       commentStart = '/**\n
       \t * Block comment\n
@@ -25,27 +32,29 @@ module.exports =
       \t * @return void\n'
       commentEnd = '\t */\n\t'
     else
-      commentStart = '/*'
-      commentEnd = '*/'
+      commentStart = '/*\n'
+      commentEnd = '\n*/'
+
 
     selection = editor.getLastSelection()
     selectionText = selection.getText()
+
+
+    if extension is 'sh' or extension is 'yaml' or extenstion is 'py' extension is ''
+      # add '# ' to the beginning of each line
+      selectionText = selectionText.replace /^/, "# "
+      selectionText = selectionText.replace /\n/g, "\n# "
+
     start = selectionText.trim().substr(0, commentStart.length)
     end = selectionText.trim().substr(-1 * commentEnd.length)
 
+    # insert text
     if start is commentStart and end is commentEnd
       replaced = selectionText.trim().substr(commentStart.length)
       replaced = replaced.substr(0, replaced.length - commentEnd.length)
       selection.insertText(replaced, {select: true})
     else
-      selection.insertText("#{commentStart+selectionText+commentEnd}", {select: true})
-
-
-
-
-
-    # cursorPoint = editor.getCursorBufferPosition()
-    # previousText = editor.getTextInBufferRange([[0, 0], [cursorPoint.row, cursorPoint.column]])
-    # console.log "previousText=#{previousText}"
-    # restText = editor.getTextInBufferRange([[cursorPoint.row, cursorPoint.column], [editor.getLastBufferRow(), -1]])
-    # console.log "restText=#{restText}"
+      selection.insertText(
+        "#{commentStart+selectionText+commentEnd}",
+        {select: true}
+      )
