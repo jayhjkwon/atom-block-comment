@@ -15,7 +15,7 @@ module.exports =
     if extension is 'js'
       commentStart = '/*\n'
       commentEnd = '\n*/'
-    else if extension is 'sh' or extension is 'yaml' or extension is ''
+    else if extension is 'sh' or extension is 'yaml' or extension is 'py' or extension is ''
       commentStart = ''
       commentEnd = ''
     else if extension is 'coffee'
@@ -40,7 +40,7 @@ module.exports =
     selectionText = selection.getText()
 
 
-    if extension is 'sh' or extension is 'yaml' or extension is ''
+    if extension is 'sh' or extension is 'yaml' or extension is 'py' or extension is ''
       # add '# ' to the beginning of each line
       selectionText = selectionText.replace /^/, "# "
       selectionText = selectionText.replace /\n/g, "\n# "
