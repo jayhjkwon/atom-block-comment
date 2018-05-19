@@ -1,17 +1,17 @@
 {
-  "name": "block-comment",
-  "main": "./lib/block-comment",
-  "version": "0.4.3",
-  "description": "Block comment",
-  "activationCommands": {
-    "atom-text-editor": [
-      "block-comment:toggle"
-    ]
-  },
-  "repository": "https://github.com/RayKwon/atom-block-comment",
-  "license": "MIT",
-  "engines": {
-    "atom": ">0.50.0"
-  },
-  "dependencies": {}
+	"name": "block-comment",
+	"version": "0.4.3",
+	"description": "Block comment",
+	"license": "MIT",
+	"main": "./lib/block-comment",
+	"repository": {},
+	"dependencies": {},
+	"engines": {
+		"atom": ">0.50.0"
+	},
+	"activationCommands": {
+		"atom-text-editor": [
+			"block-comment:toggle"
+		]
+	}
 }
